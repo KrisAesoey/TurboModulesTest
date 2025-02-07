@@ -8,8 +8,12 @@ import React, {useState} from 'react';
 import {Alert, Button, SafeAreaView, StatusBar, Text} from 'react-native';
 import RTNCalculator from 'rtn-calculator/js/NativeRTNCalculator.ts';
 
+const secureKey = 'secureKey';
+
 const App: () => JSX.Element = () => {
   const [result, setResult] = useState<number | null>(null);
+
+  const [secureResult, setSecureResult] = useState<string>('2');
 
   React.useEffect(() => {
     const listenerSubscription = RTNCalculator?.onValueChanged(data => {
@@ -30,6 +34,19 @@ const App: () => JSX.Element = () => {
         onPress={async () => {
           const value = await RTNCalculator?.add(3, 7);
           setResult(value ?? null);
+        }}
+      />
+      <Button
+        title="Set secure"
+        onPress={async () => {
+          await RTNCalculator?.setItem(secureKey, secureResult);
+        }}
+      />
+      <Button
+        title="Get secure"
+        onPress={async () => {
+          const value = await RTNCalculator?.getItem(secureKey);
+          Alert.alert(`Result: ${value}`);
         }}
       />
     </SafeAreaView>

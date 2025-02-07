@@ -2,7 +2,6 @@ import React
 import ReactAppDependencyProvider
 import React_RCTAppDelegate
 import UIKit
-import RTNCalculator
 
 @main
 class AppDelegate: RCTAppDelegate {
