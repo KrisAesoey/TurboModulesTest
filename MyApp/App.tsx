@@ -15,15 +15,15 @@ const App: () => JSX.Element = () => {
 
   const [secureResult, setSecureResult] = useState<string>('2');
 
-  React.useEffect(() => {
-    const listenerSubscription = RTNCalculator?.onValueChanged(data => {
-      Alert.alert(`Result: ${data}`);
-    });
+  // React.useEffect(() => {
+  //   const listenerSubscription = RTNCalculator?.onValueChanged(data => {
+  //     Alert.alert(`Result: ${data}`);
+  //   });
 
-    return () => {
-      listenerSubscription?.remove();
-    };
-  }, []);
+  //   return () => {
+  //     listenerSubscription?.remove();
+  //   };
+  // }, []);
 
   return (
     <SafeAreaView>
@@ -46,6 +46,13 @@ const App: () => JSX.Element = () => {
         title="Get secure"
         onPress={async () => {
           const value = await RTNCalculator?.getItem(secureKey);
+          Alert.alert(`Result: ${value}`);
+        }}
+      />
+      <Button
+        title="Delete secure"
+        onPress={async () => {
+          const value = await RTNCalculator?.deleteItem(secureKey);
           Alert.alert(`Result: ${value}`);
         }}
       />
