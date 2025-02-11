@@ -19,13 +19,12 @@ class CalculatorPackage : BaseReactPackage() {
         return ReactModuleInfoProvider {
             mapOf(
                 CalculatorModule.NAME to ReactModuleInfo(
-                    CalculatorModule.NAME,
-                    CalculatorModule::class.java.name,
-                    false, // canOverrideExistingModule
-                    false, // needsEagerInit
-                    true, // isTurboModule
-                    false, // isCxxModule
-                    true // hasConstants
+                    name = CalculatorModule.NAME,
+                    className = CalculatorModule::class.java.name,
+                    canOverrideExistingModule = false,
+                    needsEagerInit = false,
+                    isCxxModule = false,
+                    isTurboModule = true
                 )
             )
         }
